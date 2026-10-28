@@ -1,0 +1,66 @@
+App\Entity\Location:
+    properties:
+        name:
+            - NotBlank:
+                groups: ['create', 'edit']
+        country:
+            - NotBlank:
+                groups: ['create', 'edit']
+            - Choice:
+                choices: ['PL', 'DE', 'FR', 'ES', 'IT', 'GB', 'US']
+                groups: ['create', 'edit']
+        latitude:
+            - NotBlank:
+                groups: ['create', 'edit']
+            - Range:
+                min: -90
+                max: 90
+                notInRangeMessage: 'Latitude must be between {{ min }} and {{ max }}'
+                groups: ['create', 'edit']
+        longitude:
+            - NotBlank:
+                groups: ['create', 'edit']
+            - Range:
+                min: -180
+                max: 180
+                notInRangeMessage: 'Longitude must be between {{ min }} and {{ max }}'
+                groups: ['create', 'edit']
+
+App\Entity\Forecast:
+    properties:
+        location:
+            - NotBlank:
+                groups: ['create', 'edit']
+        date:
+            - NotBlank:
+                groups: ['create', 'edit']
+        temperature:
+            - NotBlank:
+                groups: ['create', 'edit']
+            - Range:
+                min: -100
+                max: 100
+                notInRangeMessage: 'Temperature must be between {{ min }} and {{ max }}'
+                groups: ['create', 'edit']
+        overcast:
+            - NotBlank:
+                groups: ['create', 'edit']
+            - Choice:
+                choices: ['Clear', 'Partly Cloudy', 'Cloudy', 'Rain', 'Snow']
+                groups: ['create', 'edit']
+        rain:
+            - NotBlank:
+                groups: ['create', 'edit']
+            - Range:
+                min: 0
+                max: 1000
+                notInRangeMessage: 'Rain must be between {{ min }} and {{ max }}'
+                groups: ['create', 'edit']
+        wind:
+            - NotBlank:
+                groups: ['create', 'edit']
+            - Range:
+                min: 0
+                max: 300
+                notInRangeMessage: 'Wind must be between {{ min }} and {{ max }}'
+                groups: ['create', 'edit']
