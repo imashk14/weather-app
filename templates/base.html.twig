@@ -44,6 +44,15 @@
                                 <a class="nav-link" href="{{ path('app_forecast_index') }}">Forecasts</a>
                             </li>
                         </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item ms-auto">
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <a class="btn btn-outline-danger" href="{{ path('app_logout') }}">Logout</a>
+                                {% else%}
+                                    <a class="btn btn-outline-primary" href="{{ path('app_login') }}">Login</a>
+                                {% endif %}
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>

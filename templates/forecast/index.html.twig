@@ -28,8 +28,12 @@
                     <td>{{ forecast.rain }}</td>
                     <td>{{ forecast.wind }}</td>
                     <td>
-                        <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_forecast_show', {'id': forecast.id}) }}">show</a>
-                        <a class="btn btn-sm btn-outline-primary" href="{{ path('app_forecast_edit', {'id': forecast.id}) }}">edit</a>
+                        {% if is_granted('ROLE_FORECAST_SHOW') %}
+                            <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_forecast_show', {'id': forecast.id}) }}">show</a>
+                        {% endif %}
+                        {% if is_granted('ROLE_FORECAST_EDIT') %}
+                            <a class="btn btn-sm btn-outline-primary" href="{{ path('app_forecast_edit', {'id': forecast.id}) }}">edit</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% else %}
@@ -41,5 +45,7 @@
         </table>
     </div>
 
-    <a class="btn btn-primary" href="{{ path('app_forecast_new') }}">Create new</a>
+    {% if is_granted('ROLE_FORECAST_NEW') %}
+        <a class="btn btn-primary" href="{{ path('app_forecast_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}
