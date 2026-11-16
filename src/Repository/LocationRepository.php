@@ -31,13 +31,15 @@ class LocationRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Location
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findOneByCountryAndCity(string $countryCode, string $city): ?Location
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.country = :countryCode')
+            ->setParameter('countryCode', $countryCode)
+            ->andWhere('l.name = :city')
+            ->setParameter('city', $city)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }
